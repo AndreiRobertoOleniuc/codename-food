@@ -3,6 +3,13 @@ import { Inter as FontSans } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 
 import { cn } from "@/lib/utils";
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/components/ui/resizable";
+import Navigation from "@/components/navigation";
+import BaseResizeableNavAndContent from "@/components/resizableWithNavigation";
 
 interface RootLayoutProps {
   children: React.ReactNode;
@@ -29,7 +36,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <BaseResizeableNavAndContent>{children}</BaseResizeableNavAndContent>
         </ThemeProvider>
       </body>
     </html>

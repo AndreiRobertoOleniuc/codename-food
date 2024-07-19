@@ -1,11 +1,10 @@
-import { ModeToggle } from "@/components/toggle-theme";
-import { Button } from "@/components/ui/button";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Codename Food",
+  description: "A recipe management app",
+};
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center p-24">
-      <Button className="mb-5">Click me</Button>
-      <ModeToggle />
-    </main>
-  );
+  return <main className="flex min-h-screen flex-col items-center p-24"></main>;
 }
