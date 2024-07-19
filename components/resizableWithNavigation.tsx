@@ -18,7 +18,7 @@ export default function BaseResizeableNavAndContent({
     <ResizablePanelGroup direction="horizontal">
       <ResizablePanel
         defaultSize={15}
-        maxSize={25}
+        maxSize={15}
         minSize={15}
         collapsedSize={5}
         collapsible
