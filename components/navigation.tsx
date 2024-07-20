@@ -30,11 +30,11 @@ export default function Navigation() {
               <ul className="grid gap-6">
                 <li>
                   <Link
-                    href="/recipes"
-                    className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary ${
-                      pathname === "/recipes"
-                        ? "text-primary bg-muted"
-                        : "text-muted-foreground"
+                    href="/recipe"
+                    className={`flex items-center gap-3 rounded-lg px-3 py-2 text-primary transition-all ${
+                      pathname === "/recipe"
+                        ? "bg-primary text-primary-foreground"
+                        : "hover:bg-muted"
                     }`}
                   >
                     <CookingPot className="h-4 w-4" />
@@ -43,12 +43,12 @@ export default function Navigation() {
                 </li>
                 <li>
                   <Link
-                    href="/recipes/create"
-                    className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary
+                    href="/recipe/create"
+                    className={`flex items-center gap-3 rounded-lg px-3 py-2 text-primary transition-all
                         ${
-                          pathname === "/recipes/create"
-                            ? "text-primary bg-muted"
-                            : "text-muted-foreground"
+                          pathname === "/recipe/create"
+                            ? "bg-primary text-primary-foreground"
+                            : "hover:bg-muted"
                         }`}
                   >
                     <Plus className="h-4 w-4" />
@@ -58,11 +58,11 @@ export default function Navigation() {
                 <li>
                   <Link
                     href="/fridge"
-                    className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary
+                    className={`flex items-center gap-3 rounded-lg px-3 py-2 text-primary transition-all 
                         ${
                           pathname === "/fridge"
-                            ? "text-primary bg-muted"
-                            : "text-muted-foreground"
+                            ? "bg-primary text-primary-foreground"
+                            : "hover:bg-muted"
                         }`}
                   >
                     <Refrigerator className="h-4 w-4" />
@@ -78,10 +78,10 @@ export default function Navigation() {
             <li>
               <Link
                 href="/settings"
-                className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary ${
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 text-primary transition-all ${
                   pathname === "/settings"
-                    ? "text-primary bg-muted"
-                    : "text-muted-foreground"
+                    ? "bg-primary text-primary-foreground"
+                    : "hover:bg-muted"
                 }`}
               >
                 <Settings className="h-4 w-4" />

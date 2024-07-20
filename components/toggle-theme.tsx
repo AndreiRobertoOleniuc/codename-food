@@ -27,7 +27,7 @@ export function ModeToggle() {
     <Button
       variant="link_nounderline"
       onClick={toggleTheme}
-      className="w-full flex items-center justify-start text-left gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+      className="w-full flex items-center justify-start text-left gap-3 rounded-lg px-3 py-2 text-foreground transition-all hover:bg-muted"
     >
       {theme === "light" && <Sun className="h-4 w-4" />}
       {theme === "dark" && <Moon className="h-4 w-4" />}
