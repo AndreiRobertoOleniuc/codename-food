@@ -3,13 +3,7 @@ import { Inter as FontSans } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 
 import { cn } from "@/lib/utils";
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from "@/components/ui/resizable";
 import Navigation from "@/components/navigation";
-import BaseResizeableNavAndContent from "@/components/resizableWithNavigation";
 
 interface RootLayoutProps {
   children: React.ReactNode;
@@ -26,7 +20,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head />
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased",
+          "min-h-screen bg-background font-sans antialiased flex flex-row",
           fontSans.variable
         )}
       >
@@ -36,7 +30,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
           enableSystem
           disableTransitionOnChange
         >
-          <BaseResizeableNavAndContent>{children}</BaseResizeableNavAndContent>
+          <Navigation />
+          {children}
         </ThemeProvider>
       </body>
     </html>
