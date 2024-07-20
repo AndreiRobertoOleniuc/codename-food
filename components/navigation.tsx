@@ -11,7 +11,7 @@ import { usePathname } from "next/navigation";
 export default function Navigation() {
   const pathname = usePathname();
   return (
-    <div className="flex flex-col h-screen py-5 w-60 border-r-2  ">
+    <div className="flex flex-col h-screen py-5 w-56 border-r-2  ">
       <div className="flex-grow flex flex-col justify-between pb-10">
         <div>
           <div className="flex flex-row items-center px-3 text-foreground">
@@ -19,7 +19,7 @@ export default function Navigation() {
               src="/android-chrome-512x512.png"
               width={50}
               height={50}
-              alt={"Application Logo"}
+              alt={"ZeroWasteChef Logo"}
               className="rounded-md"
             />
             <span className="ml-4">ZeroWasteChef</span>
