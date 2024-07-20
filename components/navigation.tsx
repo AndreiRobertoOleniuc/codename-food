@@ -1,16 +1,20 @@
+"use client";
+
 import { ModeToggle } from "./toggle-theme";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
-import { FaBowlRice } from "react-icons/fa6";
-import { BiFridge } from "react-icons/bi";
 import Image from "next/image";
+import Link from "next/link";
+import { CookingPot, Plus, Refrigerator, Settings } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 export default function Navigation() {
+  const pathname = usePathname();
   return (
-    <div className="flex flex-col h-screen p-5 w-60 border-r-2  ">
+    <div className="flex flex-col h-screen py-5 w-60 border-r-2  ">
       <div className="flex-grow flex flex-col justify-between pb-10">
         <div>
-          <div className="flex flex-row items-center">
+          <div className="flex flex-row items-center px-3 text-foreground">
             <Image
               src="/android-chrome-512x512.png"
               width={50}
@@ -18,36 +22,89 @@ export default function Navigation() {
               alt={"Application Logo"}
               className="rounded-md"
             />
-            <span className="ml-4">Recipe Manager</span>
+            <span className="ml-4">ZeroWasteChef</span>
           </div>
           <Separator className="mt-6 mb-6" />
-          <nav className="mb-4">
-            <div className={`flex items-center cursor-pointer `}>
-              <FaBowlRice />
-              <span className="ml-2">Recipes</span>
-            </div>
-            <Separator className="mt-6 mb-6" />
-            <div className={`flex items-center cursor-pointer `}>
-              <BiFridge />
-              <span className="ml-2">Fridge</span>
-            </div>
-          </nav>
-        </div>
-        <div>
-          <div className="flex flex-row items-center">
-            <ModeToggle />
-            <span className="ml-4 text-sm text-muted-foreground">
-              Toggle theme
-            </span>
+          <div className="flex-1">
+            <nav className="items-start px-2 text-sm font-medium">
+              <ul className="grid gap-6">
+                <li>
+                  <Link
+                    href="/recipes"
+                    className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary ${
+                      pathname === "/recipes"
+                        ? "text-primary bg-muted"
+                        : "text-muted-foreground"
+                    }`}
+                  >
+                    <CookingPot className="h-4 w-4" />
+                    Recipes
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/recipes/create"
+                    className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary
+                        ${
+                          pathname === "/recipes/create"
+                            ? "text-primary bg-muted"
+                            : "text-muted-foreground"
+                        }`}
+                  >
+                    <Plus className="h-4 w-4" />
+                    Create Recipe
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/fridge"
+                    className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary
+                        ${
+                          pathname === "/fridge"
+                            ? "text-primary bg-muted"
+                            : "text-muted-foreground"
+                        }`}
+                  >
+                    <Refrigerator className="h-4 w-4" />
+                    Fridge
+                  </Link>
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
+        <nav className="items-start px-2 text-sm font-medium">
+          <ul className="grid gap-6">
+            <li>
+              <Link
+                href="/settings"
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary ${
+                  pathname === "/settings"
+                    ? "text-primary bg-muted"
+                    : "text-muted-foreground"
+                }`}
+              >
+                <Settings className="h-4 w-4" />
+                Settings
+              </Link>
+            </li>
+            <li>
+              <ModeToggle />
+            </li>
+          </ul>
+        </nav>
       </div>
-      <div className="flex flex-row w-full cursor-pointer">
+      <div className="flex flex-row w-full cursor-pointer text-foreground px-4">
         <Avatar>
-          <AvatarImage src="https://github.com/shadcn.png" />
-          <AvatarFallback>CN</AvatarFallback>
+          <AvatarImage src="https://avatars.githubusercontent.com/u/67226565?v=4" />
+          <AvatarFallback>AO</AvatarFallback>
         </Avatar>
-        <span className="ml-5">Shadcn</span>
+        <div className="ml-4 flex flex-col">
+          <span>Andrei Oleniuc</span>
+          <span className="text-muted-foreground text-xxs">
+            andreioleniucroberto@gmail.com
+          </span>
+        </div>
       </div>
     </div>
   );
