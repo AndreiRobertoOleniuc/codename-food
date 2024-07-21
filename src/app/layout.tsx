@@ -1,9 +1,9 @@
-import "@/styles/globals.css";
 import { Inter as FontSans } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 
 import { cn } from "@/lib/utils";
 import Navigation from "@/components/navigation";
+import "@/styles/global.css";
 
 interface RootLayoutProps {
   children: React.ReactNode;
