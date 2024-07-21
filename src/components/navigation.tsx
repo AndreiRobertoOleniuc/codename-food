@@ -7,8 +7,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { CookingPot, Plus, Refrigerator, Settings } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 export default function Navigation() {
+  const { data: session } = useSession();
   const pathname = usePathname();
   return (
     <div className="flex flex-col h-screen py-5 w-56 border-r-2  ">
@@ -96,7 +98,7 @@ export default function Navigation() {
       </div>
       <div className="flex flex-row w-full cursor-pointer text-foreground px-4">
         <Avatar>
-          <AvatarImage src="https://avatars.githubusercontent.com/u/67226565?v=4" />
+          <AvatarImage src={session?.user?.image!} />
           <AvatarFallback>AO</AvatarFallback>
         </Avatar>
         <div className="ml-4 flex flex-col">
