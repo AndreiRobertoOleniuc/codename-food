@@ -26,7 +26,7 @@ export default function Navigation() {
           </div>
           <Separator className="mt-6 mb-6" />
           <div className="flex-1">
-            <nav className="items-start px-2 text-sm font-medium">
+            <nav className="items-start px-3 text-sm font-medium">
               <ul className="grid gap-6">
                 <li>
                   <Link
@@ -73,7 +73,7 @@ export default function Navigation() {
             </nav>
           </div>
         </div>
-        <nav className="items-start px-2 text-sm font-medium">
+        <nav className="items-start px-3 text-sm font-medium">
           <ul className="grid gap-6">
             <li>
               <Link
