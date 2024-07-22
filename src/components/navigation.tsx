@@ -99,7 +99,7 @@ export default function Navigation() {
       <div className="flex flex-row w-full cursor-pointer text-foreground px-4">
         <Avatar>
           <AvatarImage src={session?.user?.image!} />
-          <AvatarFallback>AO</AvatarFallback>
+          <AvatarFallback>{session?.user?.name!.at(0)}</AvatarFallback>
         </Avatar>
         <div className="ml-4 flex flex-col">
           <span>Andrei Oleniuc</span>
