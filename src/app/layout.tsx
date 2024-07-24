@@ -2,11 +2,10 @@ import { Inter as FontSans } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 
 import { cn } from "@/lib/utils";
-import Navigation from "@/components/navigation";
 import "@/styles/global.css";
 import AuthProvider from "./AuthProvider";
 
-interface RootLayoutProps {
+interface Layout {
   children: React.ReactNode;
 }
 
@@ -15,7 +14,7 @@ const fontSans = FontSans({
   variable: "--font-sans",
 });
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children }: Layout) {
   return (
     <AuthProvider>
       <html lang="en" suppressHydrationWarning>
@@ -32,7 +31,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
             enableSystem
             disableTransitionOnChange
           >
-            <Navigation />
             {children}
           </ThemeProvider>
         </body>
