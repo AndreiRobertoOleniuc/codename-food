@@ -34,6 +34,15 @@ export const authConfig: NextAuthConfig = {
   pages: {
     signIn: "/auth/signin",
   },
+  callbacks: {
+    async session({ session, user }) {
+      session.user.id = user.id;
+      return session;
+    },
+    async redirect() {
+      return "/dashboard";
+    },
+  },
 };
 
 export const { handlers, auth, signIn, signOut } = NextAuth(authConfig);
