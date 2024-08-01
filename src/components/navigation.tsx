@@ -8,7 +8,6 @@ import Link from "next/link";
 import { CookingPot, Plus, Refrigerator, Settings } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { SignInButton } from "./authbuttons";
 
 export default function Navigation() {
   const { data: session } = useSession();
@@ -98,19 +97,13 @@ export default function Navigation() {
         </nav>
       </div>
       <div className="flex flex-row w-full cursor-pointer text-foreground px-4 items-center">
-        {session ? (
-          <>
-            <Avatar>
-              <AvatarImage src={session?.user?.image!} />
-              <AvatarFallback>{session?.user?.name!.charAt(0)}</AvatarFallback>
-            </Avatar>
-            <div className="ml-4 flex flex-col">
-              <span className="text-sm">{session?.user?.name}</span>
-            </div>
-          </>
-        ) : (
-          <SignInButton />
-        )}
+        <Avatar>
+          <AvatarImage src={session?.user?.image!} />
+          <AvatarFallback>{session?.user?.name!.charAt(0)}</AvatarFallback>
+        </Avatar>
+        <div className="ml-4 flex flex-col">
+          <span className="text-sm">{session?.user?.name}</span>
+        </div>
       </div>
     </div>
   );
