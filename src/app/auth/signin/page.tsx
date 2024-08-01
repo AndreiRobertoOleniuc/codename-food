@@ -2,7 +2,13 @@ import { redirect } from "next/navigation";
 import { AuthError } from "next-auth";
 import { providerMap, signIn } from "@/auth";
 import { Metadata } from "next";
-import Link from "next/link";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export const metadata: Metadata = {
   title: "Authentication",
@@ -11,17 +17,15 @@ export const metadata: Metadata = {
 
 export default async function SignInPage() {
   return (
-    <div className="flex flex-col items-center justify-center h-svh w-svw">
-      <div className="p-8">
-        <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-          <div className="flex flex-col space-y-2 text-center">
-            <h1 className="text-2xl font-semibold tracking-tight">
-              Create an account
-            </h1>
-            <p className="text-sm text-muted-foreground">
-              Enter your email below to create your account
-            </p>
-          </div>
+    <div className="w-svw h-svh flex flex-col justify-center items-center xsm:p-10">
+      <Card className="w-full max-w-sm">
+        <CardHeader>
+          <CardTitle className="text-2xl">Login</CardTitle>
+          <CardDescription>
+            Login with any of the following providers
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-4">
           {Object.values(providerMap).map((provider) => (
             <form
               key={provider.id}
@@ -37,30 +41,21 @@ export default async function SignInPage() {
                 }
               }}
             >
-              <button type="submit">
-                <span>Sign in with {provider.name}</span>
+              <button
+                type="submit"
+                className="inline-flex h-10 w-full sm:w-10/12 items-center justify-center gap-2 rounded border border-slate-300 bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                <img
+                  src={provider.image}
+                  alt={provider.name}
+                  className="h-[18px] w-[18px] "
+                />
+                Sign in with {provider.name}
               </button>
             </form>
           ))}
-          <p className="px-8 text-center text-sm text-muted-foreground">
-            By clicking continue, you agree to our{" "}
-            <Link
-              href="/terms"
-              className="underline underline-offset-4 hover:text-primary"
-            >
-              Terms of Service
-            </Link>{" "}
-            and{" "}
-            <Link
-              href="/privacy"
-              className="underline underline-offset-4 hover:text-primary"
-            >
-              Privacy Policy
-            </Link>
-            .
-          </p>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }

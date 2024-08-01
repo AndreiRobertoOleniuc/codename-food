@@ -80,6 +80,9 @@ const config = {
         xxs: "0.525rem",
       },
     },
+    screens: {
+      xsm: "320px",
+    },
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;

@@ -19,12 +19,31 @@ const providers: Provider[] = [
   }),
 ];
 
+const findProviderImage = (providerId: string) => {
+  switch (providerId) {
+    case "github":
+      return "https://www.svgrepo.com/show/512317/github-142.svg";
+    case "google":
+      return "https://www.svgrepo.com/show/475656/google-color.svg";
+    default:
+      return "";
+  }
+};
+
 export const providerMap = providers.map((provider) => {
   if (typeof provider === "function") {
     const providerData = provider();
-    return { id: providerData.id, name: providerData.name };
+    return {
+      id: providerData.id,
+      name: providerData.name,
+      image: findProviderImage(providerData.id),
+    };
   } else {
-    return { id: provider.id, name: provider.name };
+    return {
+      id: provider.id,
+      name: provider.name,
+      image: findProviderImage(provider.id),
+    };
   }
 });
 

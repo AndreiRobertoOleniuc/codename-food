@@ -33,9 +33,9 @@ export default function Navigation() {
               <ul className="grid gap-6">
                 <li>
                   <Link
-                    href="/recipe"
+                    href="/dashboard/recipe"
                     className={`flex items-center gap-3 rounded-lg px-3 py-2 text-primary transition-all ${
-                      pathname === "/recipe"
+                      pathname === "/dashboard/recipe"
                         ? "bg-primary text-primary-foreground"
                         : "hover:bg-muted"
                     }`}
@@ -46,10 +46,10 @@ export default function Navigation() {
                 </li>
                 <li>
                   <Link
-                    href="/recipe/create"
+                    href="/dashboard/recipe/create"
                     className={`flex items-center gap-3 rounded-lg px-3 py-2 text-primary transition-all
                         ${
-                          pathname === "/recipe/create"
+                          pathname === "/dashboard/recipe/create"
                             ? "bg-primary text-primary-foreground"
                             : "hover:bg-muted"
                         }`}
@@ -60,10 +60,10 @@ export default function Navigation() {
                 </li>
                 <li>
                   <Link
-                    href="/fridge"
+                    href="/dashboard/fridge"
                     className={`flex items-center gap-3 rounded-lg px-3 py-2 text-primary transition-all 
                         ${
-                          pathname === "/fridge"
+                          pathname === "/dashboard/fridge"
                             ? "bg-primary text-primary-foreground"
                             : "hover:bg-muted"
                         }`}
@@ -80,9 +80,9 @@ export default function Navigation() {
           <ul className="grid gap-6">
             <li>
               <Link
-                href="/settings"
+                href="/dashboard/settings"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 text-primary transition-all ${
-                  pathname === "/settings"
+                  pathname === "/dashboard/settings"
                     ? "bg-primary text-primary-foreground"
                     : "hover:bg-muted"
                 }`}
