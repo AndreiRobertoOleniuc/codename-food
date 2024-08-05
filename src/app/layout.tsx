@@ -3,7 +3,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 
 import { cn } from "@/lib/utils";
 import "@/styles/global.css";
-import AuthProvider from "./AuthProvider";
 
 interface Layout {
   children: React.ReactNode;
@@ -16,25 +15,23 @@ const fontSans = FontSans({
 
 export default function RootLayout({ children }: Layout) {
   return (
-    <AuthProvider>
-      <html lang="en" suppressHydrationWarning>
-        <head />
-        <body
-          className={cn(
-            "min-h-screen bg-background font-sans antialiased flex flex-row",
-            fontSans.variable
-          )}
+    <html lang="en" suppressHydrationWarning>
+      <head />
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased flex flex-row",
+          fontSans.variable
+        )}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
         >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
-        </body>
-      </html>
-    </AuthProvider>
+          {children}
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }
