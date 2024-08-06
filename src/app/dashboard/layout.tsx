@@ -36,7 +36,7 @@ export default async function Layout({ children }: RootLayoutProps) {
         </div>
         <div className="flex flex-row w-full cursor-pointer text-foreground px-4 items-center">
           <Avatar>
-            <AvatarImage src={session?.user?.image!} />
+            <AvatarImage src={session?.user?.image!} alt="User Profile Image" />
             <AvatarFallback>{session?.user?.name!.charAt(0)}</AvatarFallback>
           </Avatar>
           <div className="ml-4 flex flex-col">
