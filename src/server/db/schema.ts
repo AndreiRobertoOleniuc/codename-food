@@ -1,3 +1,4 @@
+import { relations } from "drizzle-orm";
 import {
   boolean,
   timestamp,
@@ -5,6 +6,8 @@ import {
   text,
   primaryKey,
   integer,
+  foreignKey,
+  serial,
 } from "drizzle-orm/pg-core";
 import type { AdapterAccountType } from "next-auth/adapters";
 
@@ -81,6 +84,66 @@ export const authenticators = pgTable(
   (authenticator) => ({
     compositePK: primaryKey({
       columns: [authenticator.userId, authenticator.credentialID],
+    }),
+  })
+);
+
+export const recipes = pgTable("recipe", {
+  recipeID: serial("recipeID")
+    .primaryKey(),
+  recipeName: text("recipeName").notNull(),
+  recipeDescription: text("recipeDescription").notNull(),
+  recipeImage: text("recipeImage").notNull(),
+  userId: text("userId")
+    .notNull()
+    .references(() => users.id),
+});
+
+export const ingredients = pgTable("ingredient", {
+  ingredientID: serial("ingredientID")
+    .primaryKey(),
+  ingredientName: text("ingredientName").notNull(),
+});
+
+// Many to Many relationship between recipes and ingredients
+export const recipeToIngredients = pgTable(
+  "recipe_to_ingredients",
+  {
+    recipeId: integer("recipe_id").notNull(),
+    ingredientId: integer("ingredient_id").notNull(),
+    quantity: integer("quantity").notNull(),
+  },
+  (table) => ({
+    pk: primaryKey({ columns: [table.recipeId, table.ingredientId] }),
+    recipeReference: foreignKey({
+      columns: [table.recipeId],
+      foreignColumns: [recipes.recipeID],
+    }),
+    ingredientReference: foreignKey({
+      columns: [table.ingredientId],
+      foreignColumns: [ingredients.ingredientID],
+    }),
+  })
+);
+
+export const recipesRelations = relations(recipes, ({ many }) => ({
+  recipeToIngredients: many(recipeToIngredients),
+}));
+
+export const ingredientsRelations = relations(ingredients, ({ many }) => ({
+  recipeToIngredients: many(recipeToIngredients),
+}));
+
+export const recipeToIngredientsRelations = relations(
+  recipeToIngredients,
+  ({ one }) => ({
+    recipe: one(recipes, {
+      fields: [recipeToIngredients.recipeId],
+      references: [recipes.recipeID],
+    }),
+    ingredient: one(ingredients, {
+      fields: [recipeToIngredients.ingredientId],
+      references: [ingredients.ingredientID],
     }),
   })
 );

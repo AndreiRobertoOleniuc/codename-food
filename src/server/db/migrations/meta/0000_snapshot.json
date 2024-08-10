@@ -1,5 +1,5 @@
 {
-  "id": "5f3c4436-5327-440e-b839-e9041798eed0",
+  "id": "ceb95b73-c2e9-49c3-86c7-5caeaf1be346",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -189,6 +189,145 @@
           ]
         }
       }
+    },
+    "public.ingredient": {
+      "name": "ingredient",
+      "schema": "",
+      "columns": {
+        "ingredientID": {
+          "name": "ingredientID",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "ingredientName": {
+          "name": "ingredientName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.recipe_to_ingredients": {
+      "name": "recipe_to_ingredients",
+      "schema": "",
+      "columns": {
+        "recipe_id": {
+          "name": "recipe_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ingredient_id": {
+          "name": "ingredient_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "quantity": {
+          "name": "quantity",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "recipe_to_ingredients_recipe_id_recipe_recipeID_fk": {
+          "name": "recipe_to_ingredients_recipe_id_recipe_recipeID_fk",
+          "tableFrom": "recipe_to_ingredients",
+          "tableTo": "recipe",
+          "columnsFrom": [
+            "recipe_id"
+          ],
+          "columnsTo": [
+            "recipeID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "recipe_to_ingredients_ingredient_id_ingredient_ingredientID_fk": {
+          "name": "recipe_to_ingredients_ingredient_id_ingredient_ingredientID_fk",
+          "tableFrom": "recipe_to_ingredients",
+          "tableTo": "ingredient",
+          "columnsFrom": [
+            "ingredient_id"
+          ],
+          "columnsTo": [
+            "ingredientID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "recipe_to_ingredients_recipe_id_ingredient_id_pk": {
+          "name": "recipe_to_ingredients_recipe_id_ingredient_id_pk",
+          "columns": [
+            "recipe_id",
+            "ingredient_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "public.recipe": {
+      "name": "recipe",
+      "schema": "",
+      "columns": {
+        "recipeID": {
+          "name": "recipeID",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "recipeName": {
+          "name": "recipeName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "recipeDescription": {
+          "name": "recipeDescription",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "recipeImage": {
+          "name": "recipeImage",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "userId": {
+          "name": "userId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "recipe_userId_user_id_fk": {
+          "name": "recipe_userId_user_id_fk",
+          "tableFrom": "recipe",
+          "tableTo": "user",
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
     },
     "public.session": {
       "name": "session",

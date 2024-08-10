@@ -26,6 +26,26 @@ CREATE TABLE IF NOT EXISTS "authenticator" (
 	CONSTRAINT "authenticator_credentialID_unique" UNIQUE("credentialID")
 );
 --> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "ingredient" (
+	"ingredientID" serial PRIMARY KEY NOT NULL,
+	"ingredientName" text NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "recipe_to_ingredients" (
+	"recipe_id" integer NOT NULL,
+	"ingredient_id" integer NOT NULL,
+	"quantity" integer NOT NULL,
+	CONSTRAINT "recipe_to_ingredients_recipe_id_ingredient_id_pk" PRIMARY KEY("recipe_id","ingredient_id")
+);
+--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "recipe" (
+	"recipeID" serial PRIMARY KEY NOT NULL,
+	"recipeName" text NOT NULL,
+	"recipeDescription" text NOT NULL,
+	"recipeImage" text NOT NULL,
+	"userId" text NOT NULL
+);
+--> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "session" (
 	"sessionToken" text PRIMARY KEY NOT NULL,
 	"userId" text NOT NULL,
@@ -55,6 +75,24 @@ END $$;
 --> statement-breakpoint
 DO $$ BEGIN
  ALTER TABLE "authenticator" ADD CONSTRAINT "authenticator_userId_user_id_fk" FOREIGN KEY ("userId") REFERENCES "public"."user"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
+DO $$ BEGIN
+ ALTER TABLE "recipe_to_ingredients" ADD CONSTRAINT "recipe_to_ingredients_recipe_id_recipe_recipeID_fk" FOREIGN KEY ("recipe_id") REFERENCES "public"."recipe"("recipeID") ON DELETE no action ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
+DO $$ BEGIN
+ ALTER TABLE "recipe_to_ingredients" ADD CONSTRAINT "recipe_to_ingredients_ingredient_id_ingredient_ingredientID_fk" FOREIGN KEY ("ingredient_id") REFERENCES "public"."ingredient"("ingredientID") ON DELETE no action ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
+DO $$ BEGIN
+ ALTER TABLE "recipe" ADD CONSTRAINT "recipe_userId_user_id_fk" FOREIGN KEY ("userId") REFERENCES "public"."user"("id") ON DELETE no action ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;

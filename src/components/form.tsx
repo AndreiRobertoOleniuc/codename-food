@@ -29,9 +29,9 @@ export function RecipeCreationForm() {
         />
         <Button onClick={(e) => addIngredient(ingredientInput, e)}>Add</Button>
       </div>
-      <ul className="list-disc list-inside space-x-4 flex flex-row flex-wrap ">
+      <ul className="list-disc list-inside flex flex-row flex-wrap ">
         {ingredients.map((ingredient, index) => (
-          <Badge key={index} className="py-2 my-2">
+          <Badge key={index} className="py-2 my-2 mr-2">
             {ingredient}
           </Badge>
         ))}
