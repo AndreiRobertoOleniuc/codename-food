@@ -3,10 +3,11 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-
-import React, { FormEvent, useState } from "react";
+import { generateRecipe } from "@/app/action";
+import React, { FormEvent, useState, useTransition } from "react";
 
 export function RecipeCreationForm() {
+  let [isPending, startTransition] = useTransition();
   const [ingredients, setIngredients] = useState<string[]>([]);
 
   const [ingredientInput, setIngredientInput] = useState("");
@@ -17,8 +18,15 @@ export function RecipeCreationForm() {
     setIngredients([...ingredients, ingredient]);
   };
 
+  const generate = async (e: FormEvent) => {
+    e.preventDefault();
+    startTransition(() => {
+      generateRecipe(ingredients);
+    });
+  };
+
   return (
-    <form className="grid grid-cols-1 gap-6 mt-5 max-w-96">
+    <form className="grid grid-cols-1 gap-6 mt-5 max-w-96" onSubmit={generate}>
       <div className="flex w-full items-center space-x-2">
         <Input
           type="text"

@@ -92,8 +92,9 @@ export const recipes = pgTable("recipe", {
   recipeID: serial("recipeID")
     .primaryKey(),
   recipeName: text("recipeName").notNull(),
-  recipeDescription: text("recipeDescription").notNull(),
-  recipeImage: text("recipeImage").notNull(),
+  recipeDifficulty: text("recipeDifficulty").notNull(),
+  cookingTime: text("cookingTime").notNull(),
+  recipeImage: text("recipeImage"),
   userId: text("userId")
     .notNull()
     .references(() => users.id),

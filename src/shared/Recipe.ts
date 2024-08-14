@@ -23,7 +23,7 @@ export interface ChatCompletionResponse {
     index: number;
     message: {
       role: string;
-      content: Recipe[];
+      content: string;
     };
     logprobs: null | any;
     finish_reason: string;
