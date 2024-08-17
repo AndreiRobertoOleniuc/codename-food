@@ -1,8 +1,7 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-import { generateRecipe } from "../../../action";
-import { RecipeCreationForm } from "@/components/form";
 import { Metadata } from "next";
+import { RecipeCreationForm } from "./form";
 
 export const metadata: Metadata = {
   title: "Create a Recipe",
@@ -13,12 +12,6 @@ export default async function CreateRecipe() {
   const session = await auth();
   if (!session?.user) {
     redirect("/auth/signin");
-  }
-
-  async function generate(formData: FormData) {
-    "use server";
-    const ingredients = formData.get("ingredients") as string;
-    const recipe = await generateRecipe(["tomato", "onion", "garlic"]);
   }
 
   return (
